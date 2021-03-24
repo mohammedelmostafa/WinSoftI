@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WinsoftDBModelStoreContainer" CdmEntityContainer="WinsoftDBEntities1">
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="WinsoftDBModel.Department">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Department1" ColumnName="Department" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Names">
+      <EntityTypeMapping TypeName="WinsoftDBModel.Name">
+        <MappingFragment StoreEntitySet="Names">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name1" ColumnName="Name" />
+          <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
