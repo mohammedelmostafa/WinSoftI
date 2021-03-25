@@ -1,0 +1,61 @@
+First question:
+1. Display employee number, name and surname for whom living in Hama area and he has been 
+service for 10 years.
+
+select EmpNo,Name,LastName From Employees 
+where Adress =N'Hama' and DIFFERENCE(YEAR(getdate()),YEAR(HireDate))=10
+
+2. Display employees name and surname for those who has degree 2 and their certificate is (Eng) 
+or those whose degree is 3 and they started working since 25/5/2003. 
+
+select Name,LastName From Employees 
+where (Degree =2 and Certificate=N'Eng') or (Degree =3 and HireDate>=N'25/5/2003')
+
+3. Display employees name and surname for those who never come to work. 
+
+select Name,LastName From Employees 
+where EmpNo not in (Select EmpNo From Time)
+
+4. Adjust the degree of the employee who has been in the service for more than 4 years by 
+increasing his degree by 1. 
+
+Update Employees Set Degree=Degree+1
+where DIFFERENCE(YEAR(getdate()),YEAR(HireDate))>10
+
+Second question:
+
+1. Display employee number, name, surname and daily work hours for each employee.
+
+select EmpNo,Name,LastName,(Select DIFFERENCE(Day(StartWork),Day(EndWork)) From Time) WorkHours  From Employees 
+
+2. Display employee number, and monthly work hours for every employee.
+
+select EmpNo,Name,LastName,(Select DIFFERENCE(Month(StartWork),Month(EndWork)) From Time) WorkHours  From Employees
+
+3. Display employee number, and salary for each employee according to work hours assumption 
+that hour wage is AED 150.
+
+Select EmpNo,DIFFERENCE(hour(StartWork),hour(EndWork))*150 Salary From Time
+
+4. Display employee number, and salary for each employee with consideration for years of 
+service, degree, and hour wage.
+
+Select EmpNo,DIFFERENCE(hour(StartWork),hour(EndWork))*(Select HourWages From Wages) Salary From Time
+
+Fourth question: 
+
+CREATE VIEW [EmpView] AS
+SELECT EmpNo, 
+(Select DIFFERENCE(hour(StartWork),hour(EndWork))*150 From Time) Salary
+FROM Employees
+
+
+Fifth question:
+CREATE SEQUENCE winsoftID  
+    AS decimal(3,0)   
+    START WITH 15  
+    INCREMENT BY 15  
+    MINVALUE 8  
+    MAXVALUE 200  
+    CYCLE   
+;  
